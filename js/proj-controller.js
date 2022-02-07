@@ -2,11 +2,22 @@
 
 $(document).ready(initPage)
 
-function initPage(){
+function initPage() {
     renderProjs();
 }
 
-function onOpenModal(projId){
+function onSubmit() {
+    var $elUserMail = $('.user-mail').val();
+    var $elSubject = $('.contact-subject').val();
+    var $elBody = $('.contact-body').val();
+    var body = $elBody + ' **mail to replay: ' + $elUserMail + '**';
+
+    window.open(
+        `https://mail.google.com/mail/?view=cm&fs=1&to=chenbezalel55@gmail.com&su=${$elSubject}&body=${body}`
+    )
+}
+
+function onOpenModal(projId) {
     var proj = getProjById(projId);
     $('.modal-body h2').text(proj.name);
     $('.modal-body .item-intro').text(proj.title);
@@ -18,7 +29,7 @@ function onOpenModal(projId){
     $('.modal-body li a').attr('href', proj.url).text(proj.name);
 }
 
-function renderProjs(){
+function renderProjs() {
 
     var projs = getProjs();
 
@@ -38,8 +49,8 @@ function renderProjs(){
         </div>
         </div>`
 
-        )
-        
-        $('.proj-list').html(strHtml.join(''));        
-        
+    )
+
+    $('.proj-list').html(strHtml.join(''));
+
 }
